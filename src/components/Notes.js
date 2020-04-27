@@ -5,7 +5,13 @@ export const Notes = ({ notes }) => {
     <ul className="list-group">
       {notes.map(note => {
         return (
-          <li key={note.id} className="list-group-item">{note.title}</li>
+          <li key={note.id} className="list-group-item">
+            <div>
+              <strong>{note.title}</strong>
+              <small>{new Date().toLocaleDateString()}</small>
+            </div>
+            <button type="button" className="btn btn-outline-danger btn-sm">&times;</button>
+          </li>
         )
       })}
     </ul>
