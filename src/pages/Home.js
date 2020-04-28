@@ -5,7 +5,7 @@ import { Loader } from '../components/Loader'
 import { FirebaseContext } from '../context/firebase/firebaseContext'
 
 export const Home = () => {
-  const { loading, notes, showNotes, removeNote } = useContext(FirebaseContext)
+  const { loading, notes, showNotes } = useContext(FirebaseContext)
 
   useEffect(() => {
     showNotes()
@@ -14,7 +14,7 @@ export const Home = () => {
   return (
     <>
       <Form />
-      {loading ? <Loader /> : <Notes notes={notes} onRemove={removeNote} />}
+      {loading ? <Loader /> : <Notes notes={notes} />}
     </>
   )
 }
