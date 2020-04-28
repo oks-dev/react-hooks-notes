@@ -1,4 +1,4 @@
-import { SHOW_LOADER, ADD_NOTE } from '../types'
+import { SHOW_LOADER, ADD_NOTE, SHOW_NOTES } from '../types'
 
 export const firebaseReducer = (state, action) => {
   switch (action.type) {
@@ -8,6 +8,11 @@ export const firebaseReducer = (state, action) => {
       return {
         ...state,
         notes: [...state.notes, { payload: action.payload }]
+      }
+    case SHOW_NOTES:
+      return {
+        ...state,
+        notes: action.payload
       }
     default:
       return state
