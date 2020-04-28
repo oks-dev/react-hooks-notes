@@ -1,16 +1,16 @@
 import React from 'react'
 
-export const Notes = ({ notes }) => {
+export const Notes = ({ notes, onRemove }) => {
   return (
     <ul className="list-group">
-      {notes.map(note => {
+      {notes.map((note, i) => {
         return (
-          <li key={note.id} className="list-group-item">
+          <li key={i} className="list-group-item">
             <div>
               <strong>{note.title}</strong>
-              <small>{new Date().toLocaleDateString()}</small>
+              <small>{note.date}</small>
             </div>
-            <button type="button" className="btn btn-outline-danger btn-sm">&times;</button>
+            <button onClick={() => onRemove(note.id)} type="button" className="btn btn-outline-danger btn-sm">&times;</button>
           </li>
         )
       })}

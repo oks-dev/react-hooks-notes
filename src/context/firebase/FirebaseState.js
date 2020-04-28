@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import axios from 'axios'
 import { FirebaseContext } from './firebaseContext'
 import { firebaseReducer } from './firebaseReducer'
-import { SHOW_LOADER, ADD_NOTE, SHOW_NOTES } from '../types'
+import { SHOW_LOADER, ADD_NOTE, SHOW_NOTES, REMOVE_NOTE } from '../types'
 
 const url = process.env.REACT_APP_DB_URL
 
@@ -45,9 +45,24 @@ export const FirebaseState = ({ children }) => {
     })
   }
 
+  const removeNote = async id => {
+    await axios.delete(`${url}/notes/${id}.json`)
+    dispatch({
+      type: REMOVE_NOTE,
+      payload: id
+    })
+  }
+
   return (
     <FirebaseContext.Provider value={
-      { showLoader, addNote, showNotes, notes: state.notes, loading: state.loading }
+      {
+        showLoader,
+        addNote,
+        showNotes,
+        removeNote,
+        notes: state.notes,
+        loading: state.loading
+      }
     }>
       {children}
     </FirebaseContext.Provider>
